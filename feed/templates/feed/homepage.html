@@ -1,1 +1,12 @@
-Hello again
+{% extends "base.html"%}
+
+{% block title%}
+Django 201
+{% endblock%}
+
+{% block body %}
+    {% for post in posts %}
+        {{post.text}} written on {{post.date}}
+        <hr>
+    {% endfor%}
+{% endblock%}
