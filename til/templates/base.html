@@ -4,9 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <title>{% block title%}{% endblock%}</title>
 </head>
 <body>
-    {% block body %}{% endblock%}
+    <nav class="flex items-center justify-between flex-wrap bg-cyan-400  p-2">
+        <div class="flex border-2 p-5 flex-shrink-0 text-white mr-6">
+          <a href="/" class="flex">
+            <img src='https://static.thenounproject.com/png/2907445-200.png' class= "w-7 h-7">
+            <span class="font-semibold text-xl">TIL</span>
+          </a>
+        </div>
+        <div class="block lg:hidden">
+          <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          <div class="text-lg lg:flex-grow">
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+              Docs
+            </a>
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+              Examples
+            </a>
+            
+          </div>
+          <div class="text-lg font-semibold p-5">
+            <box-icon name='log-in-circle' class="items-center align-middle justify-center "></box-icon>
+            {% if request.user.is_authenticated %}
+              <a href="{% url 'account_logout' %}" class="hover:text-white items-center align-middle justify-center">Logout</a>
+            {% else%}
+              <a href="{% url 'account_login' %}" class="hover:text-white items-center align-middle justify-center">Login</a>
+            {% endif%}
+          </div>
+          </div>
+        </div>
+      </nav>
+      <div class="p-16">
+        {% block body %}
+          {% block content %}
+          {% endblock %}
+        {% endblock%}
+      </div>
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+
 </body>
 </html>
