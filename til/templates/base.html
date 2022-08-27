@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +23,17 @@
           </button>
         </div>
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          {% comment %} New Post {% endcomment %}
           <div class="text-lg lg:flex-grow">
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-              Docs
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'feed:new_post' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 js-toggle-modal">
+              Create Post
             </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            {% else%}
+              <a href="{% url 'account_login' %}" class="hover:text-white items-center align-middle justify-center">Login</a>
+            {% endif%}
+            
+            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 hello text-teal-200 hover:text-white mr-4">
               Examples
             </a>
             
@@ -47,8 +54,27 @@
           {% block content %}
           {% endblock %}
         {% endblock%}
+
+
+
+
+        <!-- component -->
+  <div class="bg-slate-800 bg-opacity-75 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0  hidden js-modal">
+    <div class="bg-white px-16 py-10 rounded-md border-4 border-gray-400 text-center">
+      <h1 class="text-xl font-bold text-slate-500">Create New Post</h1>
+      <div>
+        <textarea class="border-2 border-cyan-400 my-4 js-post-text" cols="60" rows="5" maxlength="240" placeholder="Enter your post" data-post-url="{% url 'feed:new_post'%}">
+        </textarea>
       </div>
-    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+      <button class="bg-indigo-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold js-submit" type="button">Ok</button>
+      <button class="bg-red-500 px-4 py-2 rounded-md text-md text-white js-toggle-modal">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+<script src="{% static 'js/main.js' %}"></script>
 
 </body>
 </html>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Create a new post
+{% endblock title %}
+    
+
+{% block body %}
+    <div>
+        <form method="post" action="." class="max-w-2xl mx-auto">
+            {% csrf_token %}
+            <label for="message"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-600">
+            Your message
+        </label>
+        <div class="flex">
+            <textarea type="text" name="text" maxlength="240" required id="id_text" rows="4"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message...">
+            </textarea>
+        </div>
+        <div class="flex justify-center my-3">
+            <button type="submit" class=" flex w-full h-25">
+                <div class="flex-1 h-full"> 
+                  <div class="flex items-center justify-center text-xl flex-1 h-full p-2 bg-blue-800 text-white shadow rounded-full">  Post Message
+                    <div class="relative">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </div>
+        </form>
+    </div>
+{% endblock body %}
+    
