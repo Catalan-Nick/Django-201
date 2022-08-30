@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load thumbnail%}
+
+{% block title %}
+    {{ user.username }}
+{% endblock title  %}
+
+
+{% block body %}
+    <!-- component -->
+<div class="bg-gray-200 font-sans h-screen w-full flex flex-row justify-center items-center">
+    <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
+        <div class="flex justify-center pt-2">
+            {% thumbnail user.profile.image "500x500" crop="center" as im %}
+            <img class="w-12 h-12 rounded-full object-cover mr-4 shadow" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="avatar">
+            {% endthumbnail %}
+        </div>
+        <div class="text-center mt-2 text-3xl font-medium">  
+            {{ user.username }}
+       </div>
+       <div class="text-center mt-2 text-cyan-700 text-sm">
+            <a href="https://www.linkedin.com/in/nicholas-catalan/">LinkedIn: nicholas-catalan</a>
+       </div>
+       <div class="px-6 text-center mt-2 font-light text-sm">
+         <p>
+           Front end Developer, avid reader.
+         </p>
+         <!-- button -->
+            {% if request.user.is_authenticated%}  
+                {% if request.user != user %}
+                <div class="flex justify-center pt-4">
+                    <button type="button" class="js-follow bg-cyan-400 hover:bg-grey hover:shadow-md hover:scale-105  shadow-black text-black font-bold py-2 px-4 rounded flex border-2 items-center justify-center" data-username="{{ user.username }}">
+                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+                        <span class="js-follow-text">Follow</span>
+                    </button>
+                </div>
+                {% endif %}
+            {% endif %}
+       </div>
+       <hr class="mt-8">
+       <div class="flex p-4">
+         <div class="w-1/2 text-center">
+            {#TODO add post counter#}
+           <span class="font-bold">{{ total_posts }}</span> Posts
+         </div>
+         <div class="w-0 border border-gray-300">
+           
+         </div>
+         <div class="w-1/2 text-center">
+           <span class="font-bold">xx</span> Followers
+         </div>
+       </div>
+    </div>
+  </div>
+{% endblock body %}
+    
