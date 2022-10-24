@@ -41,7 +41,6 @@ $(document).on("click", ".js-toggle-modal", function(e) {
         return false
     }
 
-
     $btn.prop("disabled", true).text("Posting!")
     $.ajax({
         type: 'POST',
@@ -88,10 +87,4 @@ $(document).on("click", ".js-toggle-modal", function(e) {
             console.warn(error)
         }
     });
-})
-
-.on("click", ".js-follow", function(e) {
-    e.preventDefault();
-    console.log("clicked")
-
 })
