@@ -10,13 +10,6 @@
         Sign in into your account
     </h2>
 </div>
-<div class="flex items-center justify-center">
-    <span class="text-sm">or 
-        <a href="#" class="text-blue-500">
-           register a new account
-        </a>
-    </span>
-</div>
 
 
 <div class="flex justify-center my-2 mx-4 md:mx-0">
@@ -25,7 +18,7 @@
       {% csrf_token %}
 
       <div class="flex flex-wrap mx-3 mb-6">
-          <div class="flex my-2 mx-5 md:mx-0 block uppercase tracking-wide text-gray-700 font-bold">
+          <div class="flex my-2 mx-5 md:mx-0 block uppercase tracking-wide text-gray-700 font-bold drop-shadow-md hover:drop-shadow-xl">
             
               {{ form.as_div}}
           </div>
@@ -46,5 +39,14 @@
     </form>
 </div>
  
+<div class="flex justify-center my-2 ">
+    <div class="p-5 bg-amber-400 shadow-lg shadow-black text-stone-700 border-solid border-2 border-sky-500">
+        <h4>Demo Login</h4>
+        <p>Username: Demo</p>
+        <p>Password: medication</p>
+
+    </div>
+
+</div>
 {% endblock content %}
     
